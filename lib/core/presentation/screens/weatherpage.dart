@@ -27,9 +27,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final List<Widget> widgetList = [
-      
-    // ];
+    var size = MediaQuery.of(context).size;
 
     return Consumer<WeatherProvider>(
         // stream: null,
@@ -57,26 +55,26 @@ class _WeatherPageState extends State<WeatherPage> {
             color: Colors.transparent,
             child: ListView(
               children: [
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: size.height * 0.010,
                 ),
                 Row(
                   children: [
-                    SizedBox(width: 10),
+                    SizedBox(width: size.width * 0.010),
                     GestureDetector(
                       onTap: () => Navigator.pushNamed(context, '?'),
                       child: Icon(Icons.search, color: Colors.white),
                     ),
                     SizedBox(
-                      width: 270,
+                      width: size.width * 0.80,
                     ),
                     Icon(Icons.menu, color: Colors.white)
                   ],
                 ),
-                const SizedBox(height: 60),
+                SizedBox(height: size.height * 0.060),
                 Row(
                   children: [
-                    const SizedBox(width: 10),
+                    SizedBox(width: size.width * 0.010),
                     SmoothPageIndicator(
                       controller: controller,
                       count: 4,
@@ -93,13 +91,13 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: size.height * 0.050,
                 ),
                 Row(
                   children: [
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: size.width * 0.010,
                     ),
                     // nm == null
                     // ? Text('')
@@ -112,11 +110,11 @@ class _WeatherPageState extends State<WeatherPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: size.height * 0.010,
                 ),
                 Row(
                   children: [
-                    SizedBox(width: 10),
+                    SizedBox(width: size.width * 0.010),
                     Text(
                       weatherProvider.major!.weather![0].main!,
                       style:
@@ -125,12 +123,12 @@ class _WeatherPageState extends State<WeatherPage> {
                   ],
                 ),
                 SizedBox(
-                  height: 130,
+                  height: size.height * 0.190,
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 10,
+                      width: size.width * 0.010,
                     ),
                     Text(
                       (weatherProvider.major!.main!.temp - 273.15)
@@ -143,13 +141,13 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: size.height * 0.015),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
                       SizedBox(
-                        width: 10,
+                        width: size.width * 0.010,
                       ),
                       WeatherIcon().getweathercon(
                           weatherProvider.major!.weather![0].main!),
@@ -173,7 +171,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 Row(
                   children: [
                     SizedBox(
-                      width: 10,
+                      width: size.width * 0.010,
                     ),
 
                     // 00000000000000000000000000000000000000000000WIND
@@ -202,35 +200,38 @@ class _WeatherPageState extends State<WeatherPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          //  color: Colors.blue,
-                          height: 5,
-                          width: 70,
-                          child: LinearProgressIndicator(
-                              backgroundColor: Colors.grey,
-                              //  color: Colors.green,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                (Colors.red),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            //  color: Colors.blue,
+                            height: 5,
+                            width: 70,
+                            child: LinearProgressIndicator(
+                                backgroundColor: Colors.grey,
+                                //  color: Colors.green,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  (Colors.red),
 
-                                // weatherProvider.getProgressColor(
-                                //   weatherProvider.getProgress(
-                                //     weatherProvider.major!.wind!.speed!
-                                //         .truncate(),
-                                //   ),
-                                // ),
-                              ),
-                              minHeight: 2.5,
-                              value: weatherProvider.getProgress(
-                                  (weatherProvider.major!.wind!.speed! * 3.6)
-                                      .truncate())
-                              //  0.13
+                                  // weatherProvider.getProgressColor(
+                                  //   weatherProvider.getProgress(
+                                  //     weatherProvider.major!.wind!.speed!
+                                  //         .truncate(),
+                                  //   ),
+                                  // ),
+                                ),
+                                minHeight: 2.5,
+                                value: weatherProvider.getProgress(
+                                    (weatherProvider.major!.wind!.speed! * 3.6)
+                                        .truncate())
+                                //  0.13
 
-                              ),
+                                ),
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      width: 50,
+                      width: size.width * 0.1550,
                     ),
                     // 000000000000000000000000000000000000005PRESSURE
                     Column(
@@ -260,35 +261,39 @@ class _WeatherPageState extends State<WeatherPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          //  color: Colors.blue,
-                          height: 5,
-                          width: 70,
-                          child: LinearProgressIndicator(
-                              backgroundColor: Colors.grey,
-                              //  color: Colors.green,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                (Colors.green),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            //  color: Colors.blue,
+                            height: 5,
+                            width: 70,
+                            child: LinearProgressIndicator(
+                                backgroundColor: Colors.grey,
+                                //  color: Colors.green,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  (Colors.green),
 
-                                // weatherProvider.getProgressColor(
-                                //   weatherProvider.getProgress(
-                                //     weatherProvider.major!.wind!.speed!
-                                //         .truncate(),
-                                //   ),
-                                // ),
-                              ),
-                              minHeight: 2.5,
-                              value: weatherProvider.getProgress(
-                                  (weatherProvider.major!.main!.pressure! / 100)
-                                      .truncate())
-                              //  0.13
+                                  // weatherProvider.getProgressColor(
+                                  //   weatherProvider.getProgress(
+                                  //     weatherProvider.major!.wind!.speed!
+                                  //         .truncate(),
+                                  //   ),
+                                  // ),
+                                ),
+                                minHeight: 2.5,
+                                value: weatherProvider.getProgress(
+                                    (weatherProvider.major!.main!.pressure! /
+                                            100)
+                                        .truncate())
+                                //  0.13
 
-                              ),
+                                ),
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      width: 50,
+                      width: size.width * 0.155,
                     ),
                     // 00000000000000000000000000000000HUMIDITY
                     Column(
@@ -316,30 +321,33 @@ class _WeatherPageState extends State<WeatherPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          //  color: Colors.blue,
-                          height: 5,
-                          width: 70,
-                          child: LinearProgressIndicator(
-                              backgroundColor: Colors.grey,
-                              //  color: Colors.green,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                (Colors.blue),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            //  color: Colors.blue,
+                            height: 5,
+                            width: 70,
+                            child: LinearProgressIndicator(
+                                backgroundColor: Colors.grey,
+                                //  color: Colors.green,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  (Colors.blue),
 
-                                // weatherProvider.getProgressColor(
-                                //   weatherProvider.getProgress(
-                                //     weatherProvider.major!.wind!.speed!
-                                //         .truncate(),
-                                //   ),
-                                // ),
-                              ),
-                              minHeight: 2.5,
-                              value: weatherProvider.getProgress(weatherProvider
-                                  .major!.main!.humidity!
-                                  .truncate())
-                              //  0.13
+                                  // weatherProvider.getProgressColor(
+                                  //   weatherProvider.getProgress(
+                                  //     weatherProvider.major!.wind!.speed!
+                                  //         .truncate(),
+                                  //   ),
+                                  // ),
+                                ),
+                                minHeight: 2.5,
+                                value: weatherProvider.getProgress(
+                                    weatherProvider.major!.main!.humidity!
+                                        .truncate())
+                                //  0.13
 
-                              ),
+                                ),
+                          ),
                         ),
                       ],
                     ),
